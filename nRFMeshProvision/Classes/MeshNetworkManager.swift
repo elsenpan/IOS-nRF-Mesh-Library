@@ -177,7 +177,7 @@ public extension MeshNetworkManager {
     /// - parameters:
     ///   - name:            The user given network name.
     ///   - provisionerName: The user given local provisioner name.
-    func createNewMeshNetwork(withName name: String, by provisionerName: String) -> MeshNetwork {
+    func createNewMeshNetwork(withName name: String, uuid: UUID = UUID(), by provisionerName: String) -> MeshNetwork {
         return createNewMeshNetwork(withName: name, by: Provisioner(name: provisionerName))
     }
     
@@ -191,8 +191,8 @@ public extension MeshNetworkManager {
     /// - parameters:
     ///   - name:      The user given network name.
     ///   - provisioner: The default Provisioner.
-    func createNewMeshNetwork(withName name: String, by provisioner: Provisioner) -> MeshNetwork {
-        let network = MeshNetwork(name: name)
+    func createNewMeshNetwork(withName name: String, uuid: UUID = UUID(), by provisioner: Provisioner) -> MeshNetwork {
+        let network = MeshNetwork(name: name, uuid: uuid)
         
         // Add a new default provisioner.
         try! network.add(provisioner: provisioner)
